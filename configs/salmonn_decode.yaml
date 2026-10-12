@@ -1,0 +1,51 @@
+# SALMONN-7B load/decode config.
+#
+# Path fields (llama_path, whisper_path, beats_path, ckpt, prompt_path,
+# test_prompt_path) are OVERRIDDEN at load time by emoseq/models/adapters.py:
+#   - weight component paths come from SALMONN_DIR (configs/paths.env)
+#   - prompt paths point at the vendored third_party/salmonn/prompts/.
+# Decoding is overridden to greedy (num_beams=1) by emoseq/models/bespoke.py.
+model:
+  llama_path: "SALMONN-7B/vicuna"
+  whisper_path: "SALMONN-7B/whisper"
+  beats_path: "SALMONN-7B/beats/BEATs_iter3_plus_AS2M_finetuned_on_AS2M_cpt2.pt"
+  ckpt: "SALMONN-7B/salmonn/salmonn_7b_v0.pth"
+
+  freeze_whisper: True
+  freeze_beats: True
+
+  use_speech_Qformer: True
+  freeze_speech_QFormer: False
+  window_level_Qformer: True
+  num_speech_query_token: 1
+  second_per_window: 0.333333
+  second_stride: 0.333333
+
+  speech_llama_proj_model: ""
+  freeze_speech_llama_proj: False
+
+  # LoRA on the Vicuna LLM (r=8, alpha=32, dropout=0.1).
+  lora: True
+  lora_rank: 8
+  lora_alpha: 32
+  lora_dropout: 0.1
+
+  multi_prompt: False
+  prompt_template: "USER: {}\nASSISTANT:"
+  prompt_path: "prompts/train_prompt.json"
+  test_prompt_path: "prompts/test_prompt.json"
+  max_txt_len: 300
+  end_sym: "</s>"
+
+  low_resource: False
+  device_8bit: 0
+
+generate:
+  max_new_tokens: 200
+  num_beams: 4
+  do_sample: False
+  min_length: 1
+  temperature: 1.0
+  top_p: 0.9
+  repetition_penalty: 1.0
+  length_penalty: 1.0

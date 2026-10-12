@@ -1,0 +1,29 @@
+# Main environment: Qwen2-Audio, Audio-Flamingo-3 (and optional Qwen3-Omni), WavLM, data prep, scoring.
+# Python 3.12. torch / torchaudio / torchvision are installed by scripts/setup/install.sh
+# (CUDA 12.4 wheels on Linux + NVIDIA, default wheels elsewhere). Exact versions of every
+# transitive dependency: requirements/main.lock.txt.
+
+# Main-branch build used for all runs (provides AudioFlamingo3ForConditionalGeneration).
+transformers @ git+https://github.com/huggingface/transformers.git@d3c7a19176496fc1ea246aa9df4f678f4fceb1cf
+tokenizers==0.22.2
+huggingface_hub==1.9.0
+safetensors==0.7.0
+accelerate==1.13.0
+peft==0.18.1
+datasets==4.8.4
+bitsandbytes==0.49.2; platform_system == "Linux"
+
+librosa==0.11.0
+soundfile==0.13.1
+numpy==2.4.4
+pandas==3.0.2
+scipy==1.17.1
+scikit-learn==1.8.0
+matplotlib==3.11.0
+sentencepiece==0.2.1
+tiktoken==0.13.0
+omegaconf==2.3.1
+antlr4-python3-runtime==4.9.3
+tqdm==4.67.3
+
+pytest

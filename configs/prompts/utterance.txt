@@ -1,0 +1,1 @@
+Listen to the speech and identify the primary emotion expressed by the speaker. Reply with exactly one word, chosen from this list and nothing else: Angry, Sad, Happy, Surprised, Fear, Disgust, Contempt, Neutral.

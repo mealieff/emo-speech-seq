@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emoseq"
+version = "0.1.0"
+description = "Emotion sequence recognition on concatenated MSP-Podcast segments: data, fine-tuning, inference and scoring"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "GPL-3.0-only" }
+# Dependencies are pinned per environment in requirements/ (main.txt, legacy.txt) and
+# installed by scripts/setup/install*.sh; the package itself is installed with --no-deps.
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["emoseq*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

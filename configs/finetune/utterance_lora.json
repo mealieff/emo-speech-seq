@@ -1,0 +1,37 @@
+{
+  "description": "Utterance SFT (discrete SER) for the Hugging Face ALMs: LoRA on every q/k/v/o projection (exclude_modules only matches a module named exactly audio_tower, so the audio encoder's q/k/v carry LoRA too; its base weights are frozen), connector not trained. Used for the reported Qwen2-Audio and Audio-Flamingo-3 utterance adapters.",
+  "freeze": {
+    "audio_tower": true,
+    "multi_modal_projector": false,
+    "language_model": false
+  },
+  "lora": {
+    "r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "exclude_modules": [
+      "audio_tower"
+    ],
+    "bias": "none",
+    "task_type": "CAUSAL_LM"
+  },
+  "training": {
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "learning_rate": 0.0002,
+    "num_train_epochs": 3,
+    "max_length": 512,
+    "logging_steps": 10,
+    "save_steps": 500,
+    "save_total_limit": 2,
+    "bf16": true,
+    "fp16": false,
+    "gradient_checkpointing": true
+  }
+}

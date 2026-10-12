@@ -1,0 +1,16 @@
+Listen to the entire audio sequence and identify the emotion expressed by the speaker(s) over time.
+
+The sequence may contain multiple speakers and multiple emotional states. Track how emotion changes throughout the audio rather than assigning a single emotion to the entire recording. Use the audio itself to determine the segment boundaries. 
+
+Segments comprise utterances at the phrasal level. For each distinct segment, provide:
+
+* the start time in seconds 
+* the end time in seconds
+* the emotion
+
+Use only these emotion labels:
+Angry, Sad, Happy, Surprised, Fear, Disgust, Contempt, Neutral.
+
+Return the result as a chronological list of:
+
+(start_time, end_time, emotion)
